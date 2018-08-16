@@ -523,9 +523,9 @@ class ValidateInstallPackage(Operation):
                     package_name = line.split()[1]
                     rpm_name = "%s.rpm" % package_name
                     rpm_set.remove(rpm_name)
-                elif 'RPM should not be used directly install RPM packages, use Alien instead!' in line.lower():
+                elif 'rpm should not be used directly install rpm packages, use alien instead!' in line.lower():
                     pass
-                elif 'However assuming you know what you are doing' in line.lower():
+                elif 'however assuming you know what you are doing' in line.lower():
                     pass
                 else:
                     # This is unexpected, so bubble up the ExecutionError.
