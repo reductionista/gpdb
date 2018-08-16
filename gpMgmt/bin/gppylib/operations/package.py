@@ -523,6 +523,8 @@ class ValidateInstallPackage(Operation):
                     package_name = line.split()[1]
                     rpm_name = "%s.rpm" % package_name
                     rpm_set.remove(rpm_name)
+                # skip extra warnings given by alien--until gppkg supports installing .deb packages, we
+                # need this to be able to install Greenplum rpms on Ubuntu
                 elif 'rpm should not be used directly install rpm packages, use alien instead!' in line.lower():
                     pass
                 elif 'however assuming you know what you are doing' in line.lower():
