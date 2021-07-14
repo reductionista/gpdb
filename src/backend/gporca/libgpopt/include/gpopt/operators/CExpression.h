@@ -94,6 +94,8 @@ private:
 	// id of origin group expression, used for debugging expressions extracted from memo
 	ULONG m_ulOriginGrpExprId;
 
+	BOOL m_is_exhaustive_join_order_origin;
+
 	// get expression's derived property given its type
 	CDrvdProp *Pdp(const CDrvdProp::EPropType ept) const;
 
@@ -215,6 +217,17 @@ public:
 		return m_cost;
 	}
 
+	void
+	MarkJoinOrderOriginAsExhaustive()
+	{
+		m_is_exhaustive_join_order_origin = true;
+	}
+
+	BOOL
+	IsJoinOrderOriginExhaustive()
+	{
+		return m_is_exhaustive_join_order_origin;
+	}
 	// get the suitable derived property type based on operator
 	CDrvdProp::EPropType Ept() const;
 

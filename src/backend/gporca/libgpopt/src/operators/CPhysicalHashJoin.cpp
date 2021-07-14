@@ -929,8 +929,14 @@ CPhysicalHashJoin::CreateOptRequests(CMemoryPool *mp)
 	// will not be created for the above query if we send only 1 request.
 	// Also, increasing the number of request increases the optimization time, so
 	// set 2 only when needed.
-	if (GPOPT_FDISABLED_XFORM(CXform::ExfExpandNAryJoinDP) &&
-		GPOPT_FDISABLED_XFORM(CXform::ExfExpandNAryJoinDPv2))
+	CPhysicalJoin *physical_join = dynamic_cast<CPhysicalJoin *>(this);
+	if (!physical_join->IsExhaustiveJoinOrderOrigin())
+	{
 		SetPartPropagateRequests(2);
+	}
+	else
+	{
+		SetPartPropagateRequests(1);
+	}
 }
 // EOF

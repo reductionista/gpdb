@@ -275,6 +275,7 @@ CPhysicalInnerHashJoin::PppsRequired(CMemoryPool *mp,
 									 CDrvdPropArray *pdrgpdpCtxt,
 									 ULONG ulOptReq)
 {
+
 	if (1 == ulOptReq)
 	{
 		// request (1): push partition propagation requests to join's children,
@@ -287,7 +288,7 @@ CPhysicalInnerHashJoin::PppsRequired(CMemoryPool *mp,
 	// request (0): push partition progagation requests to join child considering
 	// DPE possibility. For HJ, PS request is pushed to the inner child if there
 	// is a consumer (DTS) on the outer side of the join.
-	GPOS_ASSERT(0 == ulOptReq);
+	//GPOS_ASSERT(0 == ulOptReq);
 	return PppsRequiredJoinChild(mp, exprhdl, pppsRequired, child_index,
 								 pdrgpdpCtxt, false);
 }

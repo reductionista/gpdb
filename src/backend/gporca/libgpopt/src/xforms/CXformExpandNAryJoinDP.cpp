@@ -133,6 +133,7 @@ CXformExpandNAryJoinDP::Transform(CXformContext *pxfctxt, CXformResult *pxfres,
 			{
 				// We should consider normalizing this expression before inserting it, as we do for pexprResult
 				pexprJoinOrder->AddRef();
+				pexprJoinOrder->MarkJoinOrderOriginAsExhaustive();
 				pxfres->Add(pexprJoinOrder);
 			}
 		}
