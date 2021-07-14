@@ -355,6 +355,20 @@ CCostModelGPDB::CostChildren(CMemoryPool *mp, CExpressionHandle &exprhdl,
 					// if parent is filter, compute scan output cost based on rows produced by Filter operator
 					dScanRows = pci->Rows();
 				}
+			} else {
+                CPhysicalPartitionSelector *ps =
+                    dynamic_cast<CPhysicalPartitionSelector *>(popChild);
+                
+                if (ps) {
+                    CCostContext *grandchildContext = NULL;
+                    scanOp = exprhdl.PopGrandchild(ul, 0, &grandchildContext);
+                    CPhysicalDynamicScan *scan =
+                        dynamic_cast<CPhysicalDynamicScan *>(scanOp);
+
+                    if (scan && scan->ScanId() == ps->ScanId() && grandchildContext) {
+                        dCostChild = grandchildContext->Cost().Get();
+                    }
+                }
 			}
 
 			if (CUtils::FPhysicalScan(scanOp))
