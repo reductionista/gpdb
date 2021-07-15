@@ -932,11 +932,11 @@ CPhysicalHashJoin::CreateOptRequests(CMemoryPool *mp)
 	CPhysicalJoin *physical_join = dynamic_cast<CPhysicalJoin *>(this);
 	if (!physical_join->IsExhaustiveJoinOrderOrigin())
 	{
-		SetPartPropagateRequests(2);
+		SetPartPropagateRequests(1);
 	}
 	else
 	{
-		SetPartPropagateRequests(1);
+		SetPartPropagateRequests(2);
 	}
 }
 // EOF

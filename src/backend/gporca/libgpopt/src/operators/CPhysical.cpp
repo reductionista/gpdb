@@ -106,7 +106,6 @@ CPhysical::UpdateOptRequests(ULONG ulPropIndex, ULONG ulRequests)
 					 ulPartPropagate < ulPartPropagateRequests;
 					 ulPartPropagate++)
 				{
-					// if it doesn't come from greedy, don't add the 2nd request
 					ULONG_PTR *pulpRequest =
 						GPOS_NEW_ARRAY(m_mp, ULONG_PTR, GPOPT_PLAN_PROPS);
 
